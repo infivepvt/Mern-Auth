@@ -1,0 +1,10 @@
+// models/Admin.js
+const mongoose = require('mongoose');
+
+const AdminSchema = new mongoose.Schema({
+  email: { type: String, required: true, unique: true },
+  paymentStatus: { type: String, required: true },
+  url: { type: String, required: true },
+});
+
+module.exports = mongoose.model('Admin', AdminSchema);
