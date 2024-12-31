@@ -1,0 +1,7 @@
+.template {
+  transition: transform 0.2s; /* Smooth scaling effect */
+}
+
+.template img {
+  border-radius: 5px; /* Optional rounded corners for images */
+}

@@ -1,0 +1,32 @@
+.navigation-bar {
+  background-color: transparent; /* Make sure there’s no background color */
+}
+
+.icon-container {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* Circular shape */
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.icon-selected {
+  border: 2px solid black; /* Outline border for selected tab */
+  color: black; /* Icon color for selected tab */
+}
+
+.nav-button {
+  background: none; /* Ensure no background color on Nav.Link */
+}
+
+.nav-button .tab-name {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.nav-button.active .tab-name {
+  font-weight: bold;
+  color: black; /* Text color for active tab */
+}

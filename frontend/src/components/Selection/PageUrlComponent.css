@@ -1,0 +1,16 @@
+/* PageUrlComponent.css */
+.placeholder-red::placeholder {
+    color: red;
+ 
+    animation: zoomInOut 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes zoomInOut {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+  

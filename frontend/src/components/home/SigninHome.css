@@ -1,0 +1,28 @@
+
+.signin-container {
+  padding: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+.signin-container h3 {
+  color: #343a40;
+  transition: color 0.3s;
+}
+.signin-container h3:hover {
+  color: #2575fc;
+}
+.signin-container .form-control {
+  background-color: #f8f9fa;
+  transition: all 0.3s;
+}
+.signin-container .form-control:focus {
+  border-color: #6a11cb;
+  box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+}
+.signin-container .btn-primary {
+  background-color: #6a11cb;
+  border: none;
+  transition: all 0.3s;
+}
+.signin-container .btn-primary:hover {
+  background-color: #2575fc;
+}

@@ -1,0 +1,74 @@
+.sidebar {
+  width: 50px;
+  transition: width 0.3s ease-in-out;
+  background: linear-gradient(135deg,  #000f24 , #000000,#240101,#c72259); /* Customize this gradient */
+  color: #fffffff8;
+  border-radius: 20px;
+ 
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.logo-section img {
+  width: 150px;
+}
+
+.nav-link {
+  color: #fffffff8;
+  margin: 10px 0;
+  transition: background 0.2s;
+}
+
+.nav-link:hover {
+  background: linear-gradient(135deg,  #020829 , #083064,#c73195,#050102);
+  border-radius: 5px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 15px;
+}
+
+.user-profile img {
+  width: 40px;
+  height: 40px;
+}
+
+.link-text {
+  margin-left: 15px;
+  display: inline-block;
+}
+
+.submenu {
+  margin-left: 20px;
+}
+
+.sidebar {
+  width: 250px; /* Set a fixed width for the sidebar */
+}
+
+.logo-section {
+  padding: 3rem; /* Add some padding */
+}
+
+.logo {
+  max-width: 80%; /* Adjust the logo size */
+  height: auto; /* Keep aspect ratio */
+}
+
+.submenu {
+  padding-left: 20px; /* Indent submenu */
+}
+
+.submenu .nav-item {
+  padding: 0.5rem 1rem; /* Add padding for submenu items */
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,113 @@
+.containerNew {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 40px 20px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* Increased perspective for a deeper 3D effect */
+.slick-list {
+  overflow: visible !important;
+  perspective: 3000px;
+}
+
+.slick-slide {
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  opacity: 0.7;
+  position: relative;
+}
+
+.slick-slide::after {
+  /* Reflection: creates a subtle reflection below the card */
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%) scaleY(-1);
+  width: 80%;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), transparent);
+  opacity: 0.3;
+  border-radius: 12px;
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+.slick-center {
+  opacity: 1;
+  z-index: 3;
+}
+
+.slick-center .template-card {
+  transform: translateZ(180px) scale(1.1) rotateY(var(--centerYRot, 0deg)) rotateX(var(--centerXRot, 0deg));
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* Non-centered slides: Push them back further, rotate them, and scale down */
+.slick-slide:not(.slick-center) .template-card {
+  transform: translateZ(-300px) rotateY(-25deg) scale(0.8) translateX(0);
+  opacity: 0.75;
+  box-shadow: none;
+}
+
+/* Hover effects for the centered slide */
+.slick-center .template-card:hover {
+  box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+}
+
+/* General template card styling */
+.template-card {
+  background: #ffffff;
+  border-radius: 12px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  text-align: center;
+  cursor: pointer;
+  padding: 20px;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* Apply a variable-based transform for tilt effect on hover */
+.template-card[data-tilt="true"] {
+  --centerXRot: 0deg;
+  --centerYRot: 0deg;
+  transition: transform 0.1s ease-out;
+}
+
+.view-all-button {
+  display: block;
+  margin: 40px auto 0;
+  text-align: center;
+}
+
+.all-templates-modal .modal-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.all-templates-modal .template-grid-item {
+  width: 200px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.all-templates-modal .template-grid-item img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.all-templates-modal .template-grid-item img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}

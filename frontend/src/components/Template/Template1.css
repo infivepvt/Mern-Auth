@@ -1,0 +1,79 @@
+.card-container {
+  max-width: 400px;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  font-family: Arial, sans-serif;
+}
+
+/* Profile Header */
+.profile-header {
+  
+  padding: 30px;
+  color: white;
+}
+
+.profile-image {
+  width: 120px;
+  height: 120px;
+  border: 4px solid #fff;
+}
+
+.company-title {
+  font-size: 1.2rem;
+  margin-top: 15px;
+}
+
+.profile-name {
+  font-size: 1.8rem;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.job-title {
+  font-size: 1rem;
+  margin-top: 5px;
+  color: #fff;
+}
+
+/* Contact Icons */
+.contact-icons .icon {
+  font-size: 1.5rem;
+  color: #ff1a1a;
+  text-decoration: none;
+  padding: 0 5px;
+}
+
+/* About Section */
+.about-section {
+  background-color: #222;
+  color: white;
+  padding: 20px;
+}
+
+.about-section h5 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.about-section p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Social Media Links */
+.social-links .icon {
+  font-size: 1.5rem;
+  color: #ff1a1a;
+  text-decoration: none;
+  padding: 0 5px;
+}
+
+/* Footer */
+.footer {
+  background-color: #222;
+  padding: 10px;
+  color: white;
+  font-size: 0.9rem;
+}
