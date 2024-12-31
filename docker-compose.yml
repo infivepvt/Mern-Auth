@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: frontend-app
+    ports:
+      - "5174:5174"  # Expose Vite's default port
+    environment:
+      - VITE_API_URL=http://backend:5000  # API URL pointing to backend service
+    volumes:
+      - ./frontend:/usr/src/app  # Mount the frontend directory to the container for hot reloading
+      - /usr/src/app/node_modules  # Ensure node_modules inside container is separate from host's node_modules
+    networks:
+      - mern-network
+    restart: always
+
+  backend:
+    build: ./backend
+    container_name: backend-api
+    ports:
+      - "5000:5000"  # Expose backend port
+    env_file:
+      - ./backend/.env  # Assuming you have an .env file in the backend folder
+    networks:
+      - mern-network
+    restart: always
+
+  caddy:
+    image: caddy:2-alpine  # Use the Caddy 2 image
+    container_name: caddy
+    ports:
+      - "80:80"  # Expose HTTP port
+      - "443:443"  # Expose HTTPS port
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile  # Mount the Caddyfile for configuration
+      - caddy_data:/data  # Persist data for Caddy (TLS certificates, etc.)
+      - caddy_config:/config  # Persist Caddy's config
+    networks:
+      - mern-network
+    restart: always
+
+networks:
+  mern-network:
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:

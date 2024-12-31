@@ -1,0 +1,11 @@
+
+# Frontend (Vite)
+auth.localhost {
+    encode gzip
+    reverse_proxy frontend-app:5174
+}
+
+# Backend API
+backend-api.auth.localhost {
+    reverse_proxy backend-api:5000
+}

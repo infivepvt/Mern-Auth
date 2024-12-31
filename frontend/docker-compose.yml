@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: .
+    container_name: frontend-app
+    ports:
+      - "5174:5174"  # Expose Vite's default port
+    environment:
+      - VITE_API_URL=http://localhost:5000  # Example environment variable for API URL
+    volumes:
+      - .:/usr/src/app  # Mount the current directory to the container for hot reloading
+      - /usr/src/app/node_modules  # Ensure node_modules inside container is separate from the host's node_modules
+    networks:
+      - frontend-network
+    restart: always
+
+networks:  
+    driver: bridge
