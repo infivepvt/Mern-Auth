@@ -21,7 +21,7 @@ function TemplatePage() {
       }
       try {
         console.log(`Fetching template data for userId: ${userId}`);
-        const response = await axios.get(`http://localhost:5000/api/templates/${userId}`);
+        const response = await axios.get(`https://tapilinq.com/api/templates/${userId}`);
         if (response.data) {
           console.log('Template data fetched successfully:', response.data);
           setSavedTemplate(response.data);

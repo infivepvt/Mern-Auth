@@ -1,10 +1,10 @@
 # Frontend (Vite)
-auth.localhost {
+tapilinq.com {
     encode gzip
     reverse_proxy frontend-app:5174
 }
 
 # Backend API
-backend-api.auth.localhost {
+backend-api.tapilinq.com {
     reverse_proxy backend-api:5000
 }

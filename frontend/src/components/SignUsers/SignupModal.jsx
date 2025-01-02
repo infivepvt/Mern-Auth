@@ -17,7 +17,7 @@ const SignupModal = ({ show, onHide, onSignupSuccess, onShowSignin }) => {
       console.log('Attempting to sign up with email:', email);
       // Format the birthday to match the expected format (YYYY-MM-DD)
       const formattedBirthday = new Date(birthday).toISOString().split('T')[0];
-      const response = await axios.post('http://localhost:5000/api/login/signup', {
+      const response = await axios.post('https://tapilinq.com/api/login/signup', {
         email,
         name,
         password,
