@@ -7,7 +7,13 @@ const loginRoutes = require('./routes/loginRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
-app.use(cors({ origin: '*' }));
+
+const corsOptions = {
+  origin: 'https://tapilinq.com',  // ඔයාගේ production domain එක
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+}; 
+app.use(cors(corsOptions));
 
 // Increase payload limit to handle large image uploads
 app.use(express.json({ limit: '20mb' }));
