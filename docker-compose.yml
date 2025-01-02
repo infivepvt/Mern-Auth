@@ -7,7 +7,7 @@ services:
     ports:
       - "5174:5174"  # Expose Vite's default port
     environment:
-      - VITE_API_URL=http://backend:5000  # API URL pointing to backend service
+      - VITE_API_URL=http://backend-api:5000  # API URL pointing to backend service
     volumes:
       - ./frontend:/usr/src/app  # Mount the frontend directory to the container for hot reloading
       - /usr/src/app/node_modules  # Ensure node_modules inside container is separate from host's node_modules
@@ -27,15 +27,15 @@ services:
     restart: always
 
   caddy:
-    image: caddy:2-alpine  # Use the Caddy 2 image
+    image: caddy:latest  # Using the official Caddy image
     container_name: caddy
     ports:
-      - "80:80"  # Expose HTTP port
-      - "443:443"  # Expose HTTPS port
+      - "80:80"   # HTTP
+      - "443:443" # HTTPS
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile  # Mount the Caddyfile for configuration
-      - caddy_data:/data  # Persist data for Caddy (TLS certificates, etc.)
-      - caddy_config:/config  # Persist Caddy's config
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile  # Mount the Caddyfile configuration
+      - caddy_data:/data  # To persist Caddy data (SSL certs)
+      - caddy_config:/config  # To persist Caddy configuration
     networks:
       - mern-network
     restart: always

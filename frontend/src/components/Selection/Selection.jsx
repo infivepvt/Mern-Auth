@@ -38,7 +38,7 @@ function Selection({ children, onLogout }) {
     if (!userId || !isInitialFetch.current) return;
     const fetchTemplateData = async () => {
       try {
-        const response = await axios.get(`https://vpro-w5om.vercel.app/api/templates/${userId}`);
+        const response = await axios.get(`http://localhost:5000/api/templates/${userId}`);
         if (response.data) {
           const { selectedTemplate, contactDetails, selectedSocialMedia, whatsAppDetails, socialMediaUrl, socialLinks } = response.data;
           setSelectedTemplate(selectedTemplate);
@@ -101,7 +101,7 @@ function Selection({ children, onLogout }) {
     };
 
     try {
-      await axios.post(`https://vpro-w5om.vercel.app/api/templates/${userId}`, savedData, {
+      await axios.post(`http://localhost:5000/api/templates/${userId}`, savedData, {
         headers: {
           'Content-Type': 'application/json',
         },

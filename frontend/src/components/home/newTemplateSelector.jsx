@@ -36,7 +36,7 @@ function NewTemplateSelector({ selectedTemplate, onSelectTemplate, initialPageUr
     if (userEmail && isInitialFetch.current) {
       const fetchUserId = async () => {
         try {
-          const response = await axios.post('https://vpro-w5om.vercel.app/api/admin/urlChecker', { email: userEmail });
+          const response = await axios.post('http://localhost:5000/api/admin/urlChecker', { email: userEmail });
           if (response.data && response.data.userId) {
             setPageUrl(response.data.userId);
             setIsUrlLocked(true);
@@ -80,7 +80,7 @@ function NewTemplateSelector({ selectedTemplate, onSelectTemplate, initialPageUr
   const handleSaveUrl = async () => {
     if (pageUrl.trim()) {
       try {
-        const response = await axios.get(`https://vpro-w5om.vercel.app/api/templates/${pageUrl}`);
+        const response = await axios.get(`http://localhost:5000/api/templates/${pageUrl}`);
         if (response.data) {
           onPageUrlSave(pageUrl);
           setIsUrlLocked(true);

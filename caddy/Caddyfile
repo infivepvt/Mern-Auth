@@ -1,4 +1,3 @@
-
 # Frontend (Vite)
 auth.localhost {
     encode gzip
