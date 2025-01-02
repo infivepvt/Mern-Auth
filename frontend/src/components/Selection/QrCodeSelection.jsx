@@ -31,7 +31,7 @@ function QrCodeSelection({ children }) {
     const fetchTemplateData = async () => {
       if (!userId) return;
       try {
-        const response = await axios.get(`https://tapilinq.com/api/templates/${userId}`);
+        const response = await axios.get(`https://backend-api.tapilinq.com/api/templates/${userId}`);
         if (response.data) {
           const { selectedTemplate, contactDetails, selectedSocialMedia, whatsAppDetails, socialMediaUrl, socialLinks } = response.data;
           setSelectedTemplate(selectedTemplate);
