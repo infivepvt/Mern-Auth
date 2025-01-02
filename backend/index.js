@@ -9,10 +9,11 @@ const adminRoutes = require('./routes/adminRoutes');
 const app = express();
 
 const corsOptions = {
-  origin: 'https://tapilinq.com',  // ඔයාගේ production domain එක
-  methods: 'GET,POST,PUT,DELETE',
-  allowedHeaders: 'Content-Type,Authorization',
-}; 
+  origin: ['https://tapilinq.com', 'http://localhost:5174'],  // Allow both production and local domains
+  methods: 'GET, POST, PUT, DELETE',
+  allowedHeaders: 'Content-Type, Authorization',
+};
+
 app.use(cors(corsOptions));
 
 // Increase payload limit to handle large image uploads
