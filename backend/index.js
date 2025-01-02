@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
@@ -7,7 +6,22 @@ const loginRoutes = require('./routes/loginRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 
 const app = express();
-app.use(cors({ origin: '*' }));
+
+// Set up CORS based on environment
+const allowedOrigins = ['https://tapilinq.com'];  // Your frontend URL for production
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests from your frontend only
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
+// Use CORS middleware with dynamic origin for production
+app.use(cors(corsOptions));
 
 // Increase payload limit to handle large image uploads
 app.use(express.json({ limit: '20mb' }));
