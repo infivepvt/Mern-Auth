@@ -7,7 +7,7 @@ services:
     ports:
       - "5174:5174"  # Expose Vite's default port
     environment:
-      - VITE_API_URL=https://backend-api.tapilinq.com # API URL pointing to backend service
+      - VITE_API_URL=http://backend-api:5000  # API URL pointing to backend service
     volumes:
       - ./frontend:/usr/src/app  # Mount the frontend directory to the container for hot reloading
       - /usr/src/app/node_modules  # Ensure node_modules inside container is separate from host's node_modules
