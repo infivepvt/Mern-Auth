@@ -33,12 +33,12 @@
 
 .profile-info {
   position: absolute;
-  bottom: 10px;
-  left: 35%;
-  padding-right: 60px;
-  margin-bottom: -28px;
-  transform: translateX(-50%);
-  z-index: 2; /* Ensures the text is on top of the overlay */
+  bottom: -20px;
+  left: 0%;
+  transform: translateX(-30%);
+  padding-left: 26%;
+  margin: 4%;
+  z-index: 2;
   color: #ffffff;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
   text-align: left;

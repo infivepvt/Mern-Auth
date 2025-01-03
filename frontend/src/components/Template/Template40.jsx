@@ -123,7 +123,7 @@ const Template2 = ({ contactDetails, selectedSocialMedia, socialLinks, selectedT
                             borderRadius: '30px',  // Rounded corners
                           }}
                         >
-                          <SocialMediaIcon className="me-3" size={40} />
+                          <SocialMediaIcon className="me-2" size={40} />
                           CONNECT WITH {currentSocialMedia?.name?.toUpperCase()}
                         </button>
                       </a>
