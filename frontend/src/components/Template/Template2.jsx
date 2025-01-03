@@ -196,7 +196,7 @@ const Template2 = ({ contactDetails, selectedSocialMedia, socialLinks, selectedT
               </a>
             ))}
           </div>
-
+          <br />
           <button className="btn w-100 custom-save-button" onClick={handleSaveToContacts}>
             <FaSave className="me-2" />
             SAVE TO CONTACTS
