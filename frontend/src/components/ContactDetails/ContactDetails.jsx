@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './ContactDetails.css';
 import CroppedImage from './CroppedImage';
 import { Modal } from 'react-bootstrap';
+import ExpandableSection from '../ExpandableSection/ExpandableSection';
 
 const ContactDetails = ({ initialData, onChange }) => {
   const formRef = useRef(initialData || {});
@@ -285,6 +286,9 @@ const ContactDetails = ({ initialData, onChange }) => {
           </div>
         ))}
 
+    <ExpandableSection title="Aditinal Information ">
+    
+     <br />
       {[
           { label: 'Mobile2 Number', key: 'Mobile2' },
           { label: 'Mobile3 Number', key: 'Mobile3' },
@@ -301,12 +305,12 @@ const ContactDetails = ({ initialData, onChange }) => {
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  defaultChecked={false}
+                  defaultChecked={true}
                   onChange={() => toggleVisibility(field.key)}
                 />
               </div>
             </div>
-            <div id={`field-${field.key}`} style={{ display: 'none' }}>
+            <div id={`field-${field.key}`} style={{ display: 'bloack' }}>
               <input
                 type="text"
                 className="form-control border-dark"
@@ -317,6 +321,8 @@ const ContactDetails = ({ initialData, onChange }) => {
             </div>
           </div>
         ))}
+
+      </ExpandableSection>
 
         {cropModal.show && (
           <CroppedImage
