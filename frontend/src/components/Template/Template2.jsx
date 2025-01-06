@@ -26,13 +26,25 @@ const Template2 = ({ contactDetails, selectedSocialMedia, socialLinks, selectedT
     title = 'Infive',
     phoneWork = '0761231212',
     phoneMobile = '',
+    Mobile2 = '',
+    Mobile3 = '',
     fax = '',
     email = 'youremail@yourwebsite.com',
+    email2 = '',
+    email3 = '',
     website = 'www.yourwebsiteaddress.com',
+    website2 = '',
+    website3 = '',
     address = '919 Oaktree Crescent, Newmarket',
+    address2 = '',
     about = '',
     logo = '/logo.png',
     logoSize = 100,
+    logoOpacity = 100,
+    bannerSize = 100,
+    bannerOpacity = 100,
+    profileSize = 100,
+    profileOpacity = 100,
     bannerImage = '/banner.png',
     profileImage = '/profile.png',
     countryCode = whatsAppDetails?.countryCode || '',
@@ -72,50 +84,74 @@ const Template2 = ({ contactDetails, selectedSocialMedia, socialLinks, selectedT
     : socialMediaUrl;
 
   const handleSaveToContacts = () => {
-    let vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nTITLE:${title}\nTEL;TYPE=WORK,VOICE:${phoneWork}\n`;
-    if (phoneMobile) vCardData += `TEL;TYPE=CELL:${phoneMobile}\n`;
-    if (fax) vCardData += `TEL;TYPE=FAX:${fax}\n`;
-    vCardData += `EMAIL:${email}\nURL:${website}\nADR;TYPE=WORK:;;${address}\nNOTE:${about}\n`;
-    if (profileImage) vCardData += `PHOTO;VALUE=URL:${profileImage}\n`;
+  let vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nTITLE:${title}\nTEL;TYPE=WORK,VOICE:${phoneWork}\n`;
 
-    currentSocialLinks.forEach(link => {
-      vCardData += `X-SOCIALPROFILE;TYPE=${link.platform.name}:${link.url}\n`;
-    });
+  if (phoneMobile) vCardData += `TEL;TYPE=CELL:${phoneMobile}\n`;
+  if (Mobile2) vCardData += `TEL;TYPE=CELL:${Mobile2}\n`;
+  if (Mobile3) vCardData += `TEL;TYPE=CELL:${Mobile3}\n`;
+  if (fax) vCardData += `TEL;TYPE=FAX:${fax}\n`;
 
-    vCardData += `END:VCARD`;
+  vCardData += `EMAIL:${email}\n`;
+  if (email2) vCardData += `EMAIL:${email2}\n`;
+  if (email3) vCardData += `EMAIL:${email3}\n`;
 
-    const blob = new Blob([vCardData], { type: 'text/vcard' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${name}.vcf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  vCardData += `URL:${website}\n`;
+  if (website2) vCardData += `URL:${website2}\n`;
+  if (website3) vCardData += `URL:${website3}\n`;
+
+  vCardData += `ADR;TYPE=WORK:;;${address}\n`;
+  if (address2) vCardData += `ADR;TYPE=HOME:;;${address2}\n`;
+
+  if (about) vCardData += `NOTE:${about}\n`;
+
+  if (profileImage) vCardData += `PHOTO;VALUE=URL:${profileImage}\n`;
+  if (logo) vCardData += `LOGO;VALUE=URL:${logo}\n`;
+
+  // Add social media links to vCard if available
+  currentSocialLinks.forEach(link => {
+    vCardData += `X-SOCIALPROFILE;TYPE=${link.platform.name}:${link.url}\n`;
+  });
+
+  vCardData += `END:VCARD`;
+
+  const blob = new Blob([vCardData], { type: 'text/vcard' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `${name}.vcf`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
 
   return (
     <div className={`container d-flex justify-content-center mt-5 template-${selectedTemplate}`}>
       <div className="card custom-card shadow-lg">
         <div
           className="card-header custom-header text-center"
-          style={{ backgroundImage: `url(${bannerImage})` }}
+          style={{ backgroundImage: `url(${bannerImage})` , 
+        
+          height: `${bannerSize}%`,  
+          opacity: bannerOpacity / 100, 
+        
+        }}
         >
           <img
             src={logo}
             alt="Company Logo"
             className="custom-logo"
-            style={{ width: `${logoSize}%` }}
+            style={{
+              width: `${logoSize}%`,   // Adjust the width based on the logoSize
+              opacity: logoOpacity / 100, // Set the opacity using the logoOpacity value
+            }}
           />
           <div className="profile-picture">
-            <img src={profileImage} alt={name} className="rounded-circle" />
-          </div>
-          <div 
+            <img src={profileImage} alt={name} className="rounded-circle"
             style={{
-              margin: '2px', // Adjust the margin as needed
-              padding: '2px' // Adjust the padding as needed
+              opacity: profileOpacity / 100, // Set the opacity using the logoOpacity value
             }}
-          >
+            />
           </div>
         </div>
         <br /><br />
@@ -142,52 +178,178 @@ const Template2 = ({ contactDetails, selectedSocialMedia, socialLinks, selectedT
           )}
 
           <div className="list-group mb-3">
-          <button
-            type="button"
-            className="list-group-item d-flex align-items-center justify-content-between"
-            onClick={() => window.open(`tel:${phoneWork}`, '_self')}
-          >
-            <FaPhone 
-              className="contact-icon me-2" 
-              style={{ transform: 'rotate(90deg)', minWidth: '20px', fontSize: '1.5rem' }} 
-            />
-            <span 
-              className="text-center flex-grow-1 text-truncate custom-phone"
-            >
-              {phoneWork}
-            </span>
-          </button>
+            {phoneWork && (
+              <button
+                type="button"
+                className="list-group-item d-flex align-items-center justify-content-between"
+                onClick={() => window.open(`tel:${phoneWork}`, '_self')}
+              >
+                <FaPhone 
+                  className="contact-icon me-2" 
+                  style={{ transform: 'rotate(90deg)', minWidth: '20px', fontSize: '1.5rem' }} 
+                />
+                <span 
+                  className="text-center flex-grow-1 text-truncate custom-phone"
+                >
+                  {phoneWork}
+                </span>
+              </button>
+            )}
+
+              {phoneMobile && (
+                <button
+                  type="button"
+                  className="list-group-item d-flex align-items-center justify-content-between"
+                  onClick={() => window.open(`tel:${phoneMobile}`, '_self')}
+                >
+                  <img
+                    src="/icons8-ringing-phone-64.png"  // Make sure to replace this path if needed
+                    alt="Phone"
+                    className="contact-icon me-2"
+                    style={{ transform: 'rotate(0deg)', minWidth: '20px', width: '1.8rem' }}  // Adjust width as needed
+                  />
+                  <span 
+                    className="text-center flex-grow-1 text-truncate custom-phone"
+                  >
+                    {phoneMobile}
+                  </span>
+                </button>
+              )}
 
 
-            <button
+            {Mobile2 && (
+              <button
               type="button"
               className="list-group-item d-flex align-items-center justify-content-between"
-              onClick={() => window.open(`mailto:${email}`, '_self')}
+              onClick={() => window.open(`tel:${Mobile2}`, '_self')}
             >
-              <FaEnvelope className="contact-icon me-2" style={{ minWidth: '20px', fontSize: '1.5rem' }} />
-              <span className="text-center flex-grow-1 text-truncate custom-phone">{email}</span>
+              <img
+                    src="/icons8-phonelink-ring-50.png"  // Make sure to replace this path if needed
+                    alt="Phone"
+                    className="contact-icon me-2"
+                    style={{ transform: 'rotate(0deg)', minWidth: '20px', width: '1.8rem' }}  // Adjust width as needed
+                  />
+              <span 
+                className="text-center flex-grow-1 text-truncate custom-phone"
+              >
+                {Mobile2}
+              </span>
             </button>
+            )}
 
-            <button
+            {Mobile3 && (
+              <button
               type="button"
               className="list-group-item d-flex align-items-center justify-content-between"
-              onClick={() => window.open(`https://${website}`, '_blank')}
+              onClick={() => window.open(`tel:${Mobile3}`, '_self')}
             >
-              <FaGlobe className="contact-icon me-2" style={{ minWidth: '20px', fontSize: '1.5rem' }} />
-              <span className="text-center flex-grow-1 text-truncate custom-phone">{website}</span>
+              <img
+                    src="/icons8-phonelink-ring-50.png"  // Make sure to replace this path if needed
+                    alt="Phone"
+                    className="contact-icon me-2"
+                    style={{ transform: 'rotate(0deg)', minWidth: '20px', width: '1.8rem' }}  // Adjust width as needed
+                  />
+              <span 
+                className="text-center flex-grow-1 text-truncate custom-phone"
+              >
+                {Mobile3}
+              </span>
             </button>
+            )}
 
-            <button
-              type="button"
-              className="list-group-item d-flex align-items-center justify-content-between"
-              onClick={() =>
-                window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`, '_blank')
-              }
-            >
-              <FaMapMarkerAlt className="contact-icon me-2" style={{ minWidth: '20px', fontSize: '1.5rem' }} />
-              <span className="text-center flex-grow-1 text-truncate custom-phone">{address}</span>
-            </button>
+            {email && (
+              <button
+                type="button"
+                className="list-group-item d-flex align-items-center justify-content-between"
+                onClick={() => window.open(`mailto:${email}`, '_self')}
+              >
+                <FaEnvelope className="contact-icon me-2" style={{ minWidth: '20px', fontSize: '1.5rem' }} />
+                <span className="text-center flex-grow-1 text-truncate custom-phone">{email}</span>
+              </button>
+            )}
+
+            {email2 && (
+              <button
+                type="button"
+                className="list-group-item d-flex align-items-center justify-content-between"
+                onClick={() => window.open(`mailto:${email2}`, '_self')}
+              >
+                <FaEnvelope className="contact-icon me-2" style={{ minWidth: '20px', fontSize: '1.5rem' }} />
+                <span className="text-center flex-grow-1 text-truncate custom-phone">{email2}</span>
+              </button>
+            )}
+
+            {email3 && (
+              <button
+                type="button"
+                className="list-group-item d-flex align-items-center justify-content-between"
+                onClick={() => window.open(`mailto:${email3}`, '_self')}
+              >
+                <FaEnvelope className="contact-icon me-2" style={{ minWidth: '20px', fontSize: '1.5rem' }} />
+                <span className="text-center flex-grow-1 text-truncate custom-phone">{email3}</span>
+              </button>
+            )}
+
+            {website && (
+              <button
+                type="button"
+                className="list-group-item d-flex align-items-center justify-content-between"
+                onClick={() => window.open(`https://${website}`, '_blank')}
+              >
+                <FaGlobe className="contact-icon me-2" style={{ minWidth: '20px', fontSize: '1.5rem' }} />
+                <span className="text-center flex-grow-1 text-truncate custom-phone">{website}</span>
+              </button>
+            )}
+
+            {website2 && (
+              <button
+                type="button"
+                className="list-group-item d-flex align-items-center justify-content-between"
+                onClick={() => window.open(`https://${website2}`, '_blank')}
+              >
+                <FaGlobe className="contact-icon me-2" style={{ minWidth: '20px', fontSize: '1.5rem' }} />
+                <span className="text-center flex-grow-1 text-truncate custom-phone">{website2}</span>
+              </button>
+            )}
+
+            {website3 && (
+              <button
+                type="button"
+                className="list-group-item d-flex align-items-center justify-content-between"
+                onClick={() => window.open(`https://${website3}`, '_blank')}
+              >
+                <FaGlobe className="contact-icon me-2" style={{ minWidth: '20px', fontSize: '1.5rem' }} />
+                <span className="text-center flex-grow-1 text-truncate custom-phone">{website3}</span>
+              </button>
+            )}
+
+            {address && (
+              <button
+                type="button"
+                className="list-group-item d-flex align-items-center justify-content-between"
+                onClick={() =>
+                  window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`, '_blank')
+                }
+              >
+                <FaMapMarkerAlt className="contact-icon me-2" style={{ minWidth: '20px', fontSize: '1.5rem' }} />
+                <span className="text-center flex-grow-1 text-truncate custom-phone">{address}</span>
+              </button>
+            )}
+
+            {address2 && (
+              <button
+                type="button"
+                className="list-group-item d-flex align-items-center justify-content-between"
+                onClick={() =>
+                  window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address2)}`, '_blank')
+                }
+              >
+                <FaMapMarkerAlt className="contact-icon me-2" style={{ minWidth: '20px', fontSize: '1.5rem' }} />
+                <span className="text-center flex-grow-1 text-truncate custom-phone">{address2}</span>
+              </button>
+            )}
           </div>
+
           <p className="fw">CONNECT WITH SOCIAL MEDIA</p>
           <div className="d-flex flex-wrap justify-content-center">
             {currentSocialLinks.map((link) => (
@@ -196,7 +358,7 @@ const Template2 = ({ contactDetails, selectedSocialMedia, socialLinks, selectedT
               </a>
             ))}
           </div>
-          <br />
+
           <button className="btn w-100 custom-save-button" onClick={handleSaveToContacts}>
             <FaSave className="me-2" />
             SAVE TO CONTACTS

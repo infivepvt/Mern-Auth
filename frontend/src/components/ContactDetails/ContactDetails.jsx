@@ -12,12 +12,19 @@ const ContactDetails = ({ initialData, onChange }) => {
     bannerImage: initialData?.bannerImage || '/banner.png',
   });
   const [logoSize, setLogoSize] = useState(initialData?.logoSize || 100);
+  const [logoOpacity, setLogoOpacity] = useState(initialData?.logoOpacity || 100);
+  const [profileSize, setProfileSize] = useState(initialData?.profileSize || 100);
+  const [profileOpacity, setProfileOpacity] = useState(initialData?.profileOpacity || 100);
+  const [bannerSize, setBannerSize] = useState(initialData?.bannerSize || 100);
+  const [bannerOpacity, setBannerOpacity] = useState(initialData?.bannerOpacity || 100);
   const [cropModal, setCropModal] = useState({
     show: false,
     imageSrc: '',
     type: '',
     aspect: 1,
   });
+
+  const [fieldValues, setFieldValues] = useState({});
 
   const debouncedChange = useCallback(
     (newData) => {
@@ -28,10 +35,10 @@ const ContactDetails = ({ initialData, onChange }) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      debouncedChange({ ...images, logoSize });
+      debouncedChange({ ...images, logoSize, logoOpacity, profileSize, profileOpacity, bannerSize, bannerOpacity}); // Include opacity here
     }, 300);
     return () => clearTimeout(timer);
-  }, [images, logoSize, debouncedChange]);
+  }, [images, logoSize, logoOpacity, profileSize, profileOpacity, bannerSize, bannerOpacity, debouncedChange]);
 
   useEffect(() => {
     formRef.current = initialData || {};
@@ -41,6 +48,11 @@ const ContactDetails = ({ initialData, onChange }) => {
       bannerImage: initialData?.bannerImage || '/banner.png',
     });
     setLogoSize(initialData?.logoSize || 100);
+    setLogoOpacity(initialData?.logoOpacity || 100);
+    setProfileSize(initialData?.profileSize || 100);
+    setProfileOpacity(initialData?.profileOpacity || 100);
+    setBannerSize(initialData?.bannerSize || 100);
+    setBannerOpacity(initialData?.bannerOpacity || 100);
   }, [initialData]);
 
   const handleInputChange = useCallback(
@@ -108,8 +120,26 @@ const ContactDetails = ({ initialData, onChange }) => {
 
   const toggleVisibility = (key) => {
     const fieldElement = document.getElementById(`field-${key}`);
+    const currentValue = formRef.current[key] || '';
+
+    // Save current value before toggling visibility
+    if (fieldElement.style.display === 'none') {
+      formRef.current[key] = fieldValues[key] || '';
+    } else {
+      setFieldValues((prevValues) => ({
+        ...prevValues,
+        [key]: currentValue,
+      }));
+    }
+
     fieldElement.style.display = fieldElement.style.display === 'none' ? 'block' : 'none';
+    if (fieldElement.style.display === 'none') {
+      handleInputChange(key, ''); // Clear the value when hidden
+    } else {
+      handleInputChange(key, fieldValues[key] || ''); // Restore the value when shown
+    }
   };
+  
 
   return (
     <div className="contact-details-section container">
@@ -127,6 +157,25 @@ const ContactDetails = ({ initialData, onChange }) => {
           >
             Edit
           </button>
+          <br />
+          <label className="mt-2"><strong>Resize Profile:</strong></label>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={profileSize}
+            className="form-range"
+            onChange={(e) => setProfileSize(parseInt(e.target.value, 0))}
+          />
+          <label className="mt-2"><strong>Profile Opacity:</strong></label>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={profileOpacity}
+            className="form-range"
+            onChange={(e) => setProfileOpacity(parseInt(e.target.value, 10))}
+          />
         </div>
 
         <div className="form-group mb-3">
@@ -139,11 +188,20 @@ const ContactDetails = ({ initialData, onChange }) => {
           <label className="mt-2"><strong>Resize Logo:</strong></label>
           <input
             type="range"
-            min="50"
-            max="150"
+            min="0"
+            max="100"
             value={logoSize}
             className="form-range"
-            onChange={(e) => setLogoSize(parseInt(e.target.value, 10))}
+            onChange={(e) => setLogoSize(parseInt(e.target.value, 0))}
+          />
+          <label className="mt-2"><strong>Logo Opacity:</strong></label>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={logoOpacity}
+            className="form-range"
+            onChange={(e) => setLogoOpacity(parseInt(e.target.value, 10))}
           />
         </div>
 
@@ -160,6 +218,25 @@ const ContactDetails = ({ initialData, onChange }) => {
           >
             Edit
           </button>
+          <br />
+          <label className="mt-2"><strong>Resize Banner:</strong></label>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={bannerSize}
+            className="form-range"
+            onChange={(e) => setBannerSize(parseInt(e.target.value, 0))}
+          />
+          <label className="mt-2"><strong>Banner Opacity:</strong></label>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={bannerOpacity}
+            className="form-range"
+            onChange={(e) => setBannerOpacity(parseInt(e.target.value, 10))}
+          />
         </div>
 
         <div className="form-group mb-3">
@@ -197,6 +274,39 @@ const ContactDetails = ({ initialData, onChange }) => {
               </div>
             </div>
             <div id={`field-${field.key}`} style={{ display: 'block' }}>
+              <input
+                type="text"
+                className="form-control border-dark"
+                placeholder={field.label}
+                value={formRef.current[field.key] || ''}
+                onChange={(e) => handleInputChange(field.key, e.target.value)}
+              />
+            </div>
+          </div>
+        ))}
+
+      {[
+          { label: 'Mobile2 Number', key: 'Mobile2' },
+          { label: 'Mobile3 Number', key: 'Mobile3' },
+          { label: 'Email2', key: 'email2' },
+          { label: 'Email3', key: 'email3' },
+          { label: 'Website2', key: 'website2' },
+          { label: 'Website3', key: 'website3' },
+          { label: 'Address2', key: 'address2' },
+        ].map((field) => (
+          <div className="form-group mb-3" key={field.key}>
+            <div className="d-flex justify-content-between align-items-center mb-2">
+              <label className="field-label"><strong>{field.label}</strong></label>
+              <div className="form-check form-switch">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  defaultChecked={false}
+                  onChange={() => toggleVisibility(field.key)}
+                />
+              </div>
+            </div>
+            <div id={`field-${field.key}`} style={{ display: 'none' }}>
               <input
                 type="text"
                 className="form-control border-dark"

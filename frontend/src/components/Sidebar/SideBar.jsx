@@ -88,7 +88,7 @@ const SideBar = ({ children, onLogout }) => {
         </ul>
 
         <div className="user-profile mt-auto p-3">
-          <img src="/user.jpg" alt="User" className="rounded-circle me-2 user-image-animation" />
+          <img src="/users.webp" alt="User" className="rounded-circle me-2 user-image-animation" />
           <div className="user-info">
             <span className="username d-block user-info-animation">{userInfo.name}</span>
             <span className="user-email text-muted user-info-animation">{userInfo.email}</span>

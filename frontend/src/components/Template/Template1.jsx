@@ -32,6 +32,8 @@ const Template1 = ({ contactDetails, selectedSocialMedia, socialLinks, selectedT
     customFields = [],
     phoneWork = '',
     email = '',
+    profileSize = 100,
+    profileOpacity = 100,
     countryCode = whatsAppDetails?.countryCode || '',
     phoneNumber = whatsAppDetails?.phoneNumber || '',
   } = currentContactDetails;
@@ -64,7 +66,11 @@ const Template1 = ({ contactDetails, selectedSocialMedia, socialLinks, selectedT
   return (
     <div className={`card-container text-center template-${selectedTemplate}`}>
       <div className="profile-header" style={{ backgroundColor: bannerColour }}>
-        <img src={profileImage} alt={`Profile of ${name}`} className="profile-image rounded-circle" />
+      <img src={profileImage} alt={name} className="rounded-circle"
+            style={{
+              width: `${profileSize}%`,   
+              opacity: profileOpacity / 100, 
+            }}/>
         <p className="company-title">{companyName}</p>
         <h2 className="profile-name">{name}</h2>
         <p className="job-title">{title}</p>
