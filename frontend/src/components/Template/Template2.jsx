@@ -43,8 +43,6 @@ const Template2 = ({ contactDetails, selectedSocialMedia, socialLinks, selectedT
     logoOpacity = 100,
     bannerSize = 100,
     bannerOpacity = 100,
-    profileSize = 100,
-    profileOpacity = 100,
     bannerImage = '/banner.png',
     profileImage = '/profile.png',
     countryCode = whatsAppDetails?.countryCode || '',
@@ -147,11 +145,7 @@ const Template2 = ({ contactDetails, selectedSocialMedia, socialLinks, selectedT
             }}
           />
           <div className="profile-picture">
-            <img src={profileImage} alt={name} className="rounded-circle"
-            style={{
-              opacity: profileOpacity / 100, // Set the opacity using the logoOpacity value
-            }}
-            />
+            <img src={profileImage} alt={name} className="rounded-circle"/>
           </div>
         </div>
         <br /><br />

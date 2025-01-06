@@ -42,8 +42,6 @@ const Template3 = ({ contactDetails, selectedSocialMedia, socialLinks, selectedT
     fax = '',
     website = '',
     address = '',
-    profileSize = 100,
-    profileOpacity = 100,
     about = '',
   } = currentContactDetails;
 
@@ -92,13 +90,7 @@ const Template3 = ({ contactDetails, selectedSocialMedia, socialLinks, selectedT
     <div className={`profile-card template-${selectedTemplate}`}>
       <div className="profile-banner">
         <div className="imagepro">
-          <img className="profile-photo" src={profileImage} alt={name} 
-          style={{
-            width: `${profileSize}%`,   
-            opacity: profileOpacity / 100, 
-          }}
-          
-          />
+          <img className="profile-photo" src={profileImage} alt={name}/>
         </div>
         
         <div className="profile-info">

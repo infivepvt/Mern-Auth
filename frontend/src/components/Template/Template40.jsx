@@ -41,8 +41,6 @@ const Template40 = ({ contactDetails, selectedSocialMedia, socialLinks, selected
     logo = '/logo.png',
     logoSize = 100,
     logoOpacity = 100,
-    profileSize = 100,
-    profileOpacity = 100,
     bannerSize = 100,
     bannerOpacity = 100,
     bannerImage = '/banner.png',
@@ -140,11 +138,7 @@ const Template40 = ({ contactDetails, selectedSocialMedia, socialLinks, selected
         >
           <br /><br /><br /><br /><br /><br /><br /><br />
           <div className="profile-picture">
-            <img src={profileImage} alt={name} className="rounded-circle"
-            style={{
-              opacity: profileOpacity / 100, 
-            }}
-            />
+            <img src={profileImage} alt={name} className="rounded-circle"/>
           </div>
         </div>
         <br /><br />

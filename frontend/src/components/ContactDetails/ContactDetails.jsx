@@ -14,8 +14,6 @@ const ContactDetails = ({ initialData, onChange }) => {
   });
   const [logoSize, setLogoSize] = useState(initialData?.logoSize || 100);
   const [logoOpacity, setLogoOpacity] = useState(initialData?.logoOpacity || 100);
-  const [profileSize, setProfileSize] = useState(initialData?.profileSize || 100);
-  const [profileOpacity, setProfileOpacity] = useState(initialData?.profileOpacity || 100);
   const [bannerSize, setBannerSize] = useState(initialData?.bannerSize || 100);
   const [bannerOpacity, setBannerOpacity] = useState(initialData?.bannerOpacity || 100);
   const [cropModal, setCropModal] = useState({
@@ -36,10 +34,10 @@ const ContactDetails = ({ initialData, onChange }) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      debouncedChange({ ...images, logoSize, logoOpacity, profileSize, profileOpacity, bannerSize, bannerOpacity}); // Include opacity here
+      debouncedChange({ ...images, logoSize, logoOpacity, bannerSize, bannerOpacity}); // Include opacity here
     }, 300);
     return () => clearTimeout(timer);
-  }, [images, logoSize, logoOpacity, profileSize, profileOpacity, bannerSize, bannerOpacity, debouncedChange]);
+  }, [images, logoSize, logoOpacity,  bannerSize, bannerOpacity, debouncedChange]);
 
   useEffect(() => {
     formRef.current = initialData || {};
@@ -50,8 +48,6 @@ const ContactDetails = ({ initialData, onChange }) => {
     });
     setLogoSize(initialData?.logoSize || 100);
     setLogoOpacity(initialData?.logoOpacity || 100);
-    setProfileSize(initialData?.profileSize || 100);
-    setProfileOpacity(initialData?.profileOpacity || 100);
     setBannerSize(initialData?.bannerSize || 100);
     setBannerOpacity(initialData?.bannerOpacity || 100);
   }, [initialData]);
@@ -158,25 +154,7 @@ const ContactDetails = ({ initialData, onChange }) => {
           >
             Edit
           </button>
-          <br />
-          <label className="mt-2"><strong>Resize Profile:</strong></label>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={profileSize}
-            className="form-range"
-            onChange={(e) => setProfileSize(parseInt(e.target.value, 0))}
-          />
-          <label className="mt-2"><strong>Profile Opacity:</strong></label>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={profileOpacity}
-            className="form-range"
-            onChange={(e) => setProfileOpacity(parseInt(e.target.value, 10))}
-          />
+          
         </div>
 
         <div className="form-group mb-3">
@@ -322,7 +300,7 @@ const ContactDetails = ({ initialData, onChange }) => {
           </div>
         ))}
 
-      </ExpandableSection>
+</ExpandableSection>
 
         {cropModal.show && (
           <CroppedImage
