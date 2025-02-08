@@ -82,9 +82,9 @@
 }
 
 .view-all-button {
-  display: block;
-  margin: 40px auto 0;
-  text-align: center;
+  
+  margin: 50px;
+  
 }
 
 .all-templates-modal .modal-body {
@@ -110,4 +110,35 @@
 .all-templates-modal .template-grid-item img:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* Horizontal Layout for Buttons */
+.d-flex.justify-content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Heartbeat Animation for the Request Templates Button */
+.heartbeat-btn {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

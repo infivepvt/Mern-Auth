@@ -36,7 +36,7 @@ function NewTemplateSelector({ selectedTemplate, onSelectTemplate, initialPageUr
     if (userEmail && isInitialFetch.current) {
       const fetchUserId = async () => {
         try {
-          const response = await axios.post('https://backend-api.tapilinq.com/api/admin/urlChecker', { email: userEmail });
+          const response = await axios.post('https://vpro-w5om.vercel.app/api/admin/urlChecker', { email: userEmail });
           if (response.data && response.data.userId) {
             setPageUrl(response.data.userId);
             setIsUrlLocked(true);
@@ -80,7 +80,7 @@ function NewTemplateSelector({ selectedTemplate, onSelectTemplate, initialPageUr
   const handleSaveUrl = async () => {
     if (pageUrl.trim()) {
       try {
-        const response = await axios.get(`https://backend-api.tapilinq.com/api/templates/${pageUrl}`);
+        const response = await axios.get(`https://vpro-w5om.vercel.app/api/templates/${pageUrl}`);
         if (response.data) {
           onPageUrlSave(pageUrl);
           setIsUrlLocked(true);
@@ -138,7 +138,7 @@ function NewTemplateSelector({ selectedTemplate, onSelectTemplate, initialPageUr
   };
 
   const handleViewAllTemplates = () => {
-    setShowAllModal(true);
+    window.open('https://vcode.pro/all/', '_blank');
   };
 
   const handleMouseMove = useCallback((e) => {
@@ -186,78 +186,31 @@ function NewTemplateSelector({ selectedTemplate, onSelectTemplate, initialPageUr
                 className="img-fluid mb-3 template-image"
                 style={{ width: '50%', height: '50%', borderRadius: '12px' }}
               />
-              <Button variant="primary" className="mt-3" onClick={() => handleTemplateClick(template)}>
-                Try This Template
-              </Button>
             </div>
           </div>
         ))}
       </Slider>
 
-      {/* View All Templates Button */}
-      <div className="view-all-button">
-        <Button variant="outline-dark" size="lg" onClick={handleViewAllTemplates}>
-          View All Templates
-        </Button>
+      {/* Horizontal Buttons */}
+      <div className="d-flex justify-content-center gap-4">
+        <div className="view-all-button">
+          <Button variant="outline-dark" size="lg" onClick={handleViewAllTemplates}>
+            View All Templates
+          </Button>
+        </div>
+
+        {/* Request Templates Button with Heartbeat Animation */}
+        <div className="view-all-button">
+          <Button 
+            variant="outline-danger" 
+            size="lg" 
+            onClick={handleRequestUrl} 
+            className="heartbeat-btn"
+          >
+            Request Templates
+          </Button>
+        </div>
       </div>
-
-      {/* Modal for selected template preview */}
-      {currentTemplate && (
-        <Modal show={showModal} onHide={handleCloseModal} centered>
-          <Modal.Header closeButton className="border-0">
-            <Modal.Title
-              className="w-100 text-center"
-              style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#007bff' }}
-            >
-              {currentTemplate.name}
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body className="text-center">
-            <div
-              className="modal-image-wrapper"
-              style={{
-                padding: '20px',
-                backgroundColor: '#f9f9f9',
-                borderRadius: '12px',
-                boxShadow: '0 60px 120px rgba(0, 0, 0, 0.1)',
-              }}
-            >
-              <img
-                src={currentTemplate.src}
-                alt={currentTemplate.name}
-                className="img-fluid mb-3"
-                style={{ width: '40%', height: 'auto', borderRadius: '32px', transition: 'transform 0.3s' }}
-              />
-            </div>
-            <Button variant="success" className="mt-4 px-5 py-2" style={{ fontSize: '1.1rem' }} onClick={handleRequestUrl}>
-              Request Template
-            </Button>
-          </Modal.Body>
-        </Modal>
-      )}
-
-      {/* Modal for All Templates */}
-      <Modal show={showAllModal} onHide={() => setShowAllModal(false)} centered className="all-templates-modal" size="lg">
-        <Modal.Header closeButton>
-          <Modal.Title>All Templates</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {templates.map((template) => (
-            <div
-              key={template.id}
-              className="template-grid-item"
-              onClick={() => {
-                setCurrentTemplate(template);
-                setShowAllModal(false);
-                setShowModal(true);
-              }}
-            >
-              <img src={template.src} alt={template.name} />
-              <p className="mt-2">{template.name}</p>
-            </div>
-          ))}
-        </Modal.Body>
-      </Modal>
 
       {/* Signup and Signin Modals */}
       <SignupModal

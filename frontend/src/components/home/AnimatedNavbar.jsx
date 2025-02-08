@@ -58,11 +58,16 @@ function AnimatedNavbar() {
 
           <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul className="navbar-nav align-items-center">
-              <li className="nav-item">
-                <Link to="/shop" className="nav-link text-white">
-                  Use Shop
-                </Link>
-              </li>
+            <li className="nav-item">
+              {/* Use window.open for "Use Shop" */}
+              <Link 
+                to="#" 
+                className="nav-link text-white" 
+                onClick={() => window.open('https://vcode.pro/all/', '_blank')}
+              >
+                Use Shop
+              </Link>
+            </li>
               <li className="nav-item">
                 <Link to="/about" className="nav-link text-white">
                   About

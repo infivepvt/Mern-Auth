@@ -27,18 +27,22 @@ function HeroSection() {
             {/* Hero Content */}
             <div className="container position-relative z-2 text-left px-3" style={{ maxWidth: '50%', marginLeft: '25px' }}>
                 <h1 className="display-4 fw-bold mb-4">
-                    The Last Card You'll Ever Need for{' '}
-                    <span className="text-animation">{text}</span>
+                The Last Card You'll Ever Need for{' '}
+                <span className="text-animation">{text}</span>
                 </h1>
                 <p className="lead mb-4">
-                    Tap to share your details, capture contacts immediately, and let automated follow-ups keep you connected.
+                Tap to share your details, capture contacts immediately, and let automated follow-ups keep you connected.
                 </p>
                 <div className="d-flex gap-5">
-                    <button className="btn btn-primary btn-lg">Shop Cards</button>
-                    <button className="btn btn-outline-primary btn-lg">How It Works</button>
+                {/* Shop Cards Button with onClick */}
+                <button className="btn btn-primary btn-lg" onClick={() => window.open('https://vcode.pro/all/', '_blank')}>
+                    Shop Cards
+                </button>
+                <button className="btn btn-outline-primary btn-lg">How It Works</button>
                 </div>
             </div>
-        </div>
+            </div>
+
     );
 }
 

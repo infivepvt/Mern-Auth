@@ -64,13 +64,21 @@ const Template1 = ({ contactDetails, selectedSocialMedia, socialLinks, selectedT
   return (
     <div className={`card-container text-center template-${selectedTemplate}`}>
       <div className="profile-header" style={{ backgroundColor: bannerColour }}>
-      <img src={profileImage} alt={name} className="rounded-circle"
-      
-      style={{ 
-          width: `200px`,
-        }}
-      
-      />
+      <img
+  src={profileImage}
+  alt={name}
+  className="rounded-circle"
+  style={{
+    width: '150px',
+    height: '150px',
+    borderRadius: '50%',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Adding shadow for depth
+    transform: 'rotateY(10deg) rotateX(10deg)',  // Slight rotation for 3D effect
+    transition: 'transform 0.3s ease-in-out', // Smooth transition
+  }}
+ 
+/>
+
         <p className="company-title">{companyName}</p>
         <h2 className="profile-name">{name}</h2>
         <p className="job-title">{title}</p>
