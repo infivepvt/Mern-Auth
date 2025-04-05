@@ -25,7 +25,7 @@ import Template12 from '../Template/Template12';
 import Template13 from '../Template/Template13';
 import Template14 from '../Template/Template14';
 import Template15 from '../Template/Template15';
-import Template17 from '../Template/Template17';
+
 
 const templates = [
     { id: 'template1', src: '/images/template1.png', name: 'Template 1', component: Template1 },
@@ -55,7 +55,7 @@ const templates = [
     { id: 'template13', src: '/images/template13.jpg', name: 'Template 13' , component: Template13},
     { id: 'template14', src: '/images/template14.jpg', name: 'Template 14' , component: Template14},
     { id: 'template15', src: '/images/template15.jpg', name: 'Template 15' , component: Template15},
-    { id: 'template17', src: '/images/template17.jpg', name: 'Template 17' , component: Template17},
+   
 
     // Add other templates as needed
 ];

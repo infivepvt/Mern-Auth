@@ -29,7 +29,6 @@ import Template12 from './Template12';
 import Template13 from './Template13';
 import Template14 from './Template14';
 import Template15 from './Template15';
-import Template17 from './Template17';
 import { savedTemplates } from '..../src/page/Dashboard'; 
 
 const TemplateView = () => {
@@ -70,7 +69,7 @@ const TemplateView = () => {
       {template.component === 'Template13' && <Template13 contactDetails={template.contactDetails} />}
       {template.component === 'Template14' && <Template14 contactDetails={template.contactDetails} />}
       {template.component === 'Template15' && <Template15 contactDetails={template.contactDetails} />}
-      {template.component === 'Template17' && <Template17 contactDetails={template.contactDetails} />}
+     
     </div>
   );
 };
