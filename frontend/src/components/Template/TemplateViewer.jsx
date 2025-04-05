@@ -24,7 +24,7 @@ import Template59 from './Template59';
 import Template6 from './Template6';
 import Template7 from './Template7';
 import Template8 from './Template8';
-import Template10 from './Template10';
+
 import Template12 from './Template12';
 import Template13 from './Template13';
 import Template14 from './Template14';
@@ -64,7 +64,7 @@ const TemplateView = () => {
       {template.component === 'Template6' && <Template6 contactDetails={template.contactDetails} />}
       {template.component === 'Template7' && <Template7 contactDetails={template.contactDetails} />}
       {template.component === 'Template8' && <Template8 contactDetails={template.contactDetails} />}
-      {template.component === 'Template10' && <Template10 contactDetails={template.contactDetails} />}
+     
       {template.component === 'Template12' && <Template12 contactDetails={template.contactDetails} />}
       {template.component === 'Template13' && <Template13 contactDetails={template.contactDetails} />}
       {template.component === 'Template14' && <Template14 contactDetails={template.contactDetails} />}

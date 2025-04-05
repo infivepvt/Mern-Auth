@@ -20,7 +20,7 @@ import Template59 from '../Template/Template59';
 import Template6 from '../Template/Template6';
 import Template7 from '../Template/Template7';
 import Template8 from '../Template/Template8';
-import Template10 from '../Template/Template10';
+
 import Template12 from '../Template/Template12';
 import Template13 from '../Template/Template13';
 import Template14 from '../Template/Template14';
@@ -50,7 +50,7 @@ const templates = [
     { id: 'template6', src: '/images/template6.jpg', name: 'Template 6' , component: Template6},
     { id: 'template7', src: '/images/template7.jpg', name: 'Template 7' , component: Template7},
     { id: 'template8', src: '/images/template8.jpg', name: 'Template 8' , component: Template8},
-    { id: 'template10', src: '/images/template10.jpg', name: 'Template 10' , component: Template10},
+
     { id: 'template12', src: '/images/template12.jpg', name: 'Template 12' , component: Template12},
     { id: 'template13', src: '/images/template13.jpg', name: 'Template 13' , component: Template13},
     { id: 'template14', src: '/images/template14.jpg', name: 'Template 14' , component: Template14},
