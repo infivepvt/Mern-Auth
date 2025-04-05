@@ -134,3 +134,182 @@
   background-color: #25D366; /* Change to WhatsApp green or your desired hover color */
   border-color: #128C7E; /* Darker border color on hover */
 }
+/* Gallery Styles */
+.gallery-section {
+  padding: 20px;
+}
+
+.gallery-preview {
+  gap: 10px;
+  
+}
+
+.gallery-item {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-text {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Image Preview Modal */
+.image-preview-modal .modal-content {
+  background: transparent;
+  border: none;
+}
+
+.image-preview-modal .modal-body {
+  padding: 0;
+  position: relative;
+}
+
+.modal-image-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-preview-modal img {
+  max-width: 90vw;
+  max-height: 90vh;
+  margin: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  animation: zoomIn 0.3s ease-out;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: -35px;
+  right: -35px;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  transform: scale(1.2);
+}
+
+/* Navigation Buttons */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+/* Backdrop effect */
+.modal-backdrop.show {
+  opacity: 0.9;
+  background: #000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.9;
+  }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .modal-close-btn {
+    top: -25px;
+    right: -25px;
+    font-size: 24px;
+  }
+  
+  .image-preview-modal img {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+}
+
+
+
+.video-preview {
+  gap: 15px;
+}
+
+.video-preview video {
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}

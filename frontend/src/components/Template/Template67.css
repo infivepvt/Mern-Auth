@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap');
+
+.profile-card67{
+    background-color: #ffffff;
+    color: #fff;
+    width: 400px;
+    height: auto;
+    border-radius: 15px;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .profile-banner {
+    position: relative;
+    
+  
+  }
+  
+  .profile-photo {
+    width: 100%;
+    object-fit: cover;
+    filter: brightness(0.79); /* Adds a dark smoke effect */
+  }
+  
+  .imagepro{
+    height: 100%;
+    width: 100%;
+    margin-right: 120px;
+    filter: brightness(1.0);
+  }
+  .profile-banner::after {
+    z-index: 1; /* Ensures the gradient overlay is on top */
+  }
+  
+  .profile-info67 {
+    bottom: -20px;
+    left: 0%;
+    transform: translateX(-30%);
+    padding-left: 26%;
+    margin: 4%;
+    z-index: 2;
+    color: #000000;
+    text-align: left;
+    font-family: 'Exo 2', sans-serif; /* Ensure the font is applied */
+
+  }
+  
+  .profile-info67 h2 {
+    font-size: 1.8rem;
+    margin: left;
+    font-family: 'Exo 2', sans-serif; /* Ensure the font is applied */
+    font-weight: 700; /* Add font weight (bold) */
+    
+  
+  }
+  .profile-info p {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    
+  }
+  .profile-contact-icons67 {
+    margin-top: 15px;
+    display: flex; /* Enables horizontal layout */
+    flex-wrap: wrap; /* Allows wrapping to the next row */
+    justify-content: flex-start; /* Aligns items to the start of the row */
+    align-items: center; /* Centers items vertically */
+    gap: 20px; /* Space between icons */
+    padding: 15px; /* Optional: adds padding around the buttons */
+}
+
+.profile-contact-icons67 .icon-item {
+    flex: 0 0 calc(20% - 20px); /* Each item takes up 20% of the container width minus the gap */
+    box-sizing: border-box; /* Ensures padding and borders are included in the width calculation */
+}
+  
+/* CSS for Subscribe Button */
+.subscribe-button {
+    background-color: rgb(255, 0, 0);
+    color: white;
+    font-weight: bold;
+    padding: 12px 23px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-family: 'Exo 2', sans-serif;
+  }
+  
+  /* Hover effect */
+  .subscribe-button:hover {
+    background-color: darkred;
+  }
+  
+  /* Ringing animation for the bell */
+  @keyframes ring {
+    0% {
+      transform: rotate(0deg) translateX(0);
+    }
+    20% {
+      transform: rotate(10deg) translateX(-2px); /* Rotate and move slightly left */
+    }
+    40% {
+      transform: rotate(-10deg) translateX(2px); /* Rotate and move slightly right */
+    }
+    60% {
+      transform: rotate(5deg) translateX(-1px); /* Small movement */
+    }
+    80% {
+      transform: rotate(-5deg) translateX(1px); /* Small movement */
+    }
+    100% {
+      transform: rotate(0deg) translateX(0); /* Back to normal position */
+    }
+  }
+  
+  /* Apply the ringing animation to the bell icon */
+  .ringing-icon {
+    animation: ring 1s ease-in-out infinite; /* Apply the animation infinitely */
+  }
+  
+  
+  .icon-button {
+    background-color: #fff;  /* White background for the buttons */
+    border: none;
+    color: #000000;  /* Black icon color */
+    font-size: 24px;  /* Icon size */
+    cursor: pointer;
+    padding: 12px;  /* Adds space around the icon */
+    border-radius: 50%;  /* Fully rounded button */
+    transition: all 0.3s ease;  /* Smooth transition for hover */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;  /* Fixed size for the button */
+    height: 50px;  /* Fixed size for the button */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Light shadow effect */
+  }
+  
+  .icon-button:hover {
+    background-color: #333;  /* Dark background on hover */
+    color: #fff;  /* White icon color on hover */
+    transform: scale(1.1);  /* Slightly scale up the icon on hover */
+  }
+  
+  .icon-button:active {
+    transform: scale(0.95);  /* Shrink on click */
+  }
+  
+  .social-media-links-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .social-media-button {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-left: -5px;
+    padding: 15px;
+    border-radius: 15px;
+    color: #000;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    width: 400px;
+    background-color: #ececec;
+  }
+  
+  .social-media-button i {
+    margin-right: 15px;
+  }
+  
+  .social-media-button:hover {
+    background-color: #555;
+  }
+  .text-wrapper {
+    text-align: left; 
+    margin-left: 16px;
+  }
+  
+  .platform-name {
+    font-weight: bold;  /* Make platform name bold */
+    color: #000;  /* Color for the platform name */
+    font-size: 22px;
+    
+  }
+  
+  .user-name {
+    color: rgb(32, 130, 243);  /* Color for the user's name */
+    font-size: 17px;
+      /* Slightly smaller font size for the user's name */
+  }
+  .footer {
+    background-color: #fdfafa;
+    text-align: center;
+    padding: 10px;
+  }
+  

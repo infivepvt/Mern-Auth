@@ -1,34 +1,49 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
-import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './Selection.css';
-import templates from './templatesData';
-import TemplateSelector from './TemplateSelector';
-import MobilePreview from './MobilePreview';
-import ContactDetails from '../ContactDetails/ContactDetails';
-import CalltoAction from '../CalltoAction/CalltoAction';
-import ExpandableSection from '../ExpandableSection/ExpandableSection';
-import SocialLink from '../SocialLink/SocialLink';
-import PageUrlComponent from './PageUrlComponent';
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaLinkedin,
+  FaWhatsapp,
+} from "react-icons/fa";
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Selection.css";
+import templates from "./templatesData";
+import TemplateSelector from "./TemplateSelector";
+import MobilePreview from "./MobilePreview";
+import ContactDetails from "../ContactDetails/ContactDetails";
+import CalltoAction from "../CalltoAction/CalltoAction";
+import ExpandableSection from "../ExpandableSection/ExpandableSection";
+import SocialLink from "../SocialLink/SocialLink";
+import PageUrlComponent from "./PageUrlComponent";
 
 function Selection({ children, onLogout }) {
-  const [userInfo, setUserInfo] = useState({ name: '', email: '' });
-  const [userId, setUserId] = useState('');
-  const [selectedTemplate, setSelectedTemplate] = useState(templates[0] || null);
+  const [userInfo, setUserInfo] = useState({ name: "", email: "" });
+  const [userId, setUserId] = useState("");
+  const [selectedTemplate, setSelectedTemplate] = useState(
+    templates[0] || null
+  );
   const [contactDetails, setContactDetails] = useState({});
-  const [selectedSocialMedia, setSelectedSocialMedia] = useState({ name: 'WhatsApp', icon: FaWhatsapp });
-  const [whatsAppDetails, setWhatsAppDetails] = useState({ countryCode: '', phoneNumber: '' });
-  const [socialMediaUrl, setSocialMediaUrl] = useState('');
+  const [selectedSocialMedia, setSelectedSocialMedia] = useState({
+    name: "WhatsApp",
+    icon: FaWhatsapp,
+  });
+  const [whatsAppDetails, setWhatsAppDetails] = useState({
+    countryCode: "",
+    phoneNumber: "",
+  });
+  const [socialMediaUrl, setSocialMediaUrl] = useState("");
   const [socialLinks, setSocialLinks] = useState([]);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const navigate = useNavigate();
   const isInitialFetch = useRef(true);
+  const [isCallToActionVisible, setIsCallToActionVisible] = useState(true);
 
   useEffect(() => {
-    const storedUserInfo = localStorage.getItem('userInfo');
+    const storedUserInfo = localStorage.getItem("userInfo");
     if (storedUserInfo) {
       setUserInfo(JSON.parse(storedUserInfo));
     }
@@ -38,9 +53,18 @@ function Selection({ children, onLogout }) {
     if (!userId || !isInitialFetch.current) return;
     const fetchTemplateData = async () => {
       try {
-        const response = await axios.get(`https://backend-api.tapilinq.com/api/templates/${userId}`);
+        const response = await axios.get(
+          `https://backend-api.tapilinq.com/api/templates/${userId}`
+        );
         if (response.data) {
-          const { selectedTemplate, contactDetails, selectedSocialMedia, whatsAppDetails, socialMediaUrl, socialLinks } = response.data;
+          const {
+            selectedTemplate,
+            contactDetails,
+            selectedSocialMedia,
+            whatsAppDetails,
+            socialMediaUrl,
+            socialLinks,
+          } = response.data;
           setSelectedTemplate(selectedTemplate);
           setContactDetails(contactDetails);
           setSelectedSocialMedia(selectedSocialMedia);
@@ -49,7 +73,7 @@ function Selection({ children, onLogout }) {
           setSocialLinks(socialLinks);
         }
       } catch (error) {
-        console.error('Error fetching template data:', error);
+        console.error("Error fetching template data:", error);
       } finally {
         isInitialFetch.current = false;
       }
@@ -74,7 +98,10 @@ function Selection({ children, onLogout }) {
       LinkedIn: FaLinkedin,
       WhatsApp: FaWhatsapp,
     };
-    setSelectedSocialMedia({ name: newSocialMedia.name, icon: iconMapping[newSocialMedia.name] });
+    setSelectedSocialMedia({
+      name: newSocialMedia.name,
+      icon: iconMapping[newSocialMedia.name],
+    });
   }, []);
 
   const handleWhatsAppChange = useCallback((details) => {
@@ -98,20 +125,25 @@ function Selection({ children, onLogout }) {
       whatsAppDetails,
       socialMediaUrl,
       socialLinks,
+      isCallToActionVisible,
     };
 
     try {
-      await axios.post(`https://backend-api.tapilinq.com/api/templates/${userId}`, savedData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        maxContentLength: 10 * 1024 * 1024,
-      });
-      console.log('Template saved successfully');
+      await axios.post(
+        `https://backend-api.tapilinq.com/api/templates/${userId}`,
+        savedData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          maxContentLength: 20 * 1024 * 1024,
+        }
+      );
+      console.log("Template saved successfully");
       setShowSuccessPopup(true);
       setTimeout(() => setShowSuccessPopup(false), 3000);
     } catch (error) {
-      console.error('Error saving template data:', error);
+      console.error("Error saving template data:", error);
       setShowErrorPopup(true);
       setTimeout(() => setShowErrorPopup(false), 3000);
     }
@@ -129,30 +161,38 @@ function Selection({ children, onLogout }) {
   };
 
   return (
-    <main className="content" style={{ width: '730px' }}>
+    <main className="content" style={{ width: "730px" }}>
       <div className="app container mt-4">
         <div className="mt-2 d-flex align-items-center">
           <span className="me-3 fw-bold text-primary">TRY YOUR URL</span>
           <button
             className="btn btn-primary btn-lg"
-            onClick={() => window.open(`/template/${userId}`, '_blank')}
-            style={{ transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}
+            onClick={() => window.open(`/template/${userId}`, "_blank")}
+            style={{ transition: "transform 0.3s ease, box-shadow 0.3s ease" }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-5px)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+              e.currentTarget.style.transform = "translateY(-5px)";
+              e.currentTarget.style.boxShadow =
+                "0 4px 12px rgba(0, 0, 0, 0.15)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "none";
             }}
           >
             {`/template/${userId}`}
           </button>
         </div>
 
-        <PageUrlComponent initialPageUrl={userId} onPageUrlSave={handlePageUrlSave} userEmail={userInfo.email} />
+        <PageUrlComponent
+          initialPageUrl={userId}
+          onPageUrlSave={handlePageUrlSave}
+          userEmail={userInfo.email}
+        />
 
-        <TemplateSelector selectedTemplate={selectedTemplate} onSelectTemplate={selectTemplate} />
+        <TemplateSelector
+          selectedTemplate={selectedTemplate}
+          onSelectTemplate={selectTemplate}
+        />
 
         <MobilePreview
           selectedTemplate={selectedTemplate}
@@ -161,24 +201,46 @@ function Selection({ children, onLogout }) {
           socialMediaUrl={socialMediaUrl}
           selectedSocialMedia={selectedSocialMedia}
           socialLinks={socialLinks}
+          isCallToActionVisible={isCallToActionVisible} // Pass the toggle state
         />
 
-        <ContactDetails initialData={contactDetails} onChange={handleContactDetailsChange} />
+        <ContactDetails
+          initialData={contactDetails}
+          onChange={handleContactDetailsChange}
+        />
         <br />
 
         <ExpandableSection title="Call to Action">
-          <CalltoAction
-            onSocialMediaChange={handleSocialMediaChange}
-            onWhatsAppChange={handleWhatsAppChange}
-            onUrlChange={handleUrlChange}
-          />
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <h6>Toggle Call to Action</h6>
+            <label className="switch">
+              <input
+                type="checkbox"
+                checked={isCallToActionVisible}
+                onChange={() =>
+                  setIsCallToActionVisible(!isCallToActionVisible)
+                }
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+          {isCallToActionVisible && (
+            <CalltoAction
+              onSocialMediaChange={handleSocialMediaChange}
+              onWhatsAppChange={handleWhatsAppChange}
+              onUrlChange={handleUrlChange}
+            />
+          )}
         </ExpandableSection>
 
         <ExpandableSection title="Social Media Links">
           <SocialLink onLinksChange={handleSocialLinksChange} />
         </ExpandableSection>
+        
 
-        <button className="btn btn-primary mt-3" onClick={handleSaveTemplate}>Save Template</button>
+        <button className="btn btn-primary mt-3" onClick={handleSaveTemplate}>
+          Save Template
+        </button>
 
         {showSuccessPopup && (
           <div className="success-popup">
