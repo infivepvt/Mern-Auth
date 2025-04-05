@@ -16,7 +16,7 @@ import Template75 from '../Template/Template75';
 import Template21 from '../Template/Template21';
 import Template86 from '../Template/Template86';
 import Template59 from '../Template/Template59';
-import Template58 from '../Template/Template58';
+
 import Template6 from '../Template/Template6';
 import Template7 from '../Template/Template7';
 import Template8 from '../Template/Template8';
@@ -46,7 +46,7 @@ const templates = [
     { id: 'template21', src: '/images/template21.jpg', name: 'Template 21' , component: Template21},
     { id: 'template86', src: '/images/template86.jpg', name: 'Template 86' , component: Template86},
     { id: 'template59', src: '/images/template59.jpg', name: 'Template 59' , component: Template59},
-    { id: 'template58', src: '/images/template58.jpg', name: 'Template 58' , component: Template58},
+  
     { id: 'template6', src: '/images/template6.jpg', name: 'Template 6' , component: Template6},
     { id: 'template7', src: '/images/template7.jpg', name: 'Template 7' , component: Template7},
     { id: 'template8', src: '/images/template8.jpg', name: 'Template 8' , component: Template8},
